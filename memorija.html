@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Memorija</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+        .row {
+            margin: 100px;
+            display: flex;
+            justify-content: center;
+        }
+        .card {
+            margin: 10px;
+            height: 150px;
+            width: 150px;
+            border: 1px solid black;
+        }
+        form {
+            margin-left: 100px;
+        }
+        input {
+            width: 300px;
+            height: 30px;
+        }
+        button {
+            height: 30px;
+            width: 150px;
+            background-color: green;
+        }
+        .red {
+            background-color: red;
+        }
+        .blue {
+            background-color: blue;
+        }
+        .yellow {
+            background-color: yellow;
+        }
+        .pink {
+            background-color: pink;
+        }
+        .brown {
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+<div class="row">
+    <div class="card red"></div>
+    <div class="card blue"></div>
+    <div class="card yellow"></div>
+    <div class="card pink"></div>
+    <div class="card brown"></div>
+</div>
+<form>
+    <input type="text" id="string">
+    <button type="button" onclick="check(event)">Submit</button>
+</form>
+
+<p id="win"></p>
+<script>
+    function hide() {
+        const cards = document.querySelectorAll(".card");
+        cards.forEach((card) => {
+            card.style.backgroundColor = "black";
+        });
+    }
+    setTimeout(hide, 5000);
+
+    function check(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const userInput = document.getElementById("string").value.trim();
+        const resultDisplay = document.getElementById("win");
+
+        if (userInput.toLowerCase() === "red,blue,yellow,pink,brown") {
+            resultDisplay.innerHTML = "You win";
+        } else {
+            resultDisplay.innerHTML = "You lose";
+        }
+        setTimeout(() => {
+            location.reload();
+        }, 5000);
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Igra</title>
+    <style>
+      body {
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+      }
+      .card {
+        width: 100px;
+        height: 100px;
+        background-color: #fff;
+        border-radius: 10px;
+        margin: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .black {
+        background-color: #000;
+      }
+      .row {
+        display: flex;
+        justify-content: center;
+      }
+      .red {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <div class="card black"></div>
+      <div class="card"></div>
+      <div class="card"></div>
+      <div class="card black"></div>
+    </div>
+    <div class="row">
+      <div class="card"></div>
+      <div class="card"></div>
+      <div class="card black"></div>
+      <div class="card"></div>
+    </div>
+    <div class="row">
+      <div class="card"></div>
+      <div class="card"></div>
+      <div class="card"></div>
+      <div class="card"></div>
+    </div>
+    <div class="row">
+      <div class="card"></div>
+      <div class="card black"></div>
+      <div class="card"></div>
+      <div class="card"></div>
+    </div>
+
+    <p>Score: <span id="score"></span></p>
+    <p id="win"></p>
+
+    <script>
+      const cards = document.querySelectorAll(".card");
+      const score = document.getElementById("score");
+      let scoreValue = 0;
+
+      function pocetok() {
+        cards.forEach((card) => {
+          if (card.classList.contains("black")) {
+            card.style.backgroundColor = "white";
+          }
+        });
+      }
+      setTimeout(pocetok, 5000);
+
+      cards.forEach((card) => {
+        card.addEventListener("click", () => {
+          if (card.classList.contains("black")) {
+            scoreValue++;
+            score.innerHTML = scoreValue;
+            card.style.backgroundColor = "black";
+            if (scoreValue == 4) {
+              document.getElementById("win").innerHTML = "You win!";
+            }
+          } else {
+            card.classList.add("red");
+            scoreValue--;
+            score.innerHTML = scoreValue;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
