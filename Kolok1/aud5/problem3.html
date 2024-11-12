@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .tutorial{
+        float: left;
+        width: 300px;
+    }
+    .tutorial div:first-child {
+        padding: 1px;
+        background: red;
+    }
+    .tutorial div:nth-child(2) {
+        padding: 1px;
+        border-left: 1px solid black;
+        height: 180px;
+    }
+    .tutorial:nth-child(3) div:nth-child(2){
+        border-left: none;
+    }
+    .tutorial h2{
+        margin-left: 20px;
+    }
+
+    .menu a {
+        text-decoration: none;
+        color: gray;
+    }
+</style>
+<body>
+
+<h1>Titled section</h1>
+<br>
+
+<div class="tutorial">
+    <div>
+        <h2>Options</h2>
+    </div>
+    <div>
+        <ul class="menu">
+            <li><a href="#">disabled</a>
+            </li>
+            <li><a href="#">icons</a>
+            </li>
+            <li><a href="#">items</a>
+            </li>
+            <li><a href="#">menus</a>
+            </li>
+            <li><a href="#">position</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="tutorial">
+    <div>
+        <h2>Methods</h2>
+    </div>
+    <div>
+        <ul class="menu">
+            <li><a href="#">blur</a>
+            </li>
+            <li><a href="#">collapsed</a>
+            </li>
+            <li><a href="#">collapseAll</a>
+            </li>
+            <li><a href="#">destroy</a>
+            </li>
+            <li><a href="#">disable</a>
+            </li>
+            <li><a href="#">previous</a>
+            </li>
+            <li><a href="#">next</a>
+            </li>
+            <li><a href="#">select</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="tutorial">
+    <div>
+        <h2>Events</h2>
+    </div>
+    <div>
+        <ul class="menu">
+            <li><a href="#">blur</a>
+            </li>
+            <li><a href="#">create</a>
+            </li>
+            <li><a href="#">focus</a>
+            </li>
+            <li><a href="#">select</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grid of Equals</title>
+    <style>
+        .row div span{
+            display: none;
+        }
+        .row{
+            display: inline-block;
+        }
+        .row div h2{
+            text-align: center;
+        }
+        .container{
+            margin: 10px;
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+</head>
+<body>
+    <div class="row">
+        <div class="container">
+            <span>Kocka 1</span>
+            <h1>1</h1>
+        </div>
+        <div class="container">
+            <span>Kocka 2</span>
+            <h1>2</h1>
+        </div>
+        <div class="container">
+            <span>Kocka 3</span>
+            <h1>3</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <span>Kocka 4</span>
+            <h1>4</h1>
+        </div>
+        <div class="container">
+            <span>Kocka 5</span>
+            <h1>5</h1>
+        </div>
+        <div class="container">
+            <span>Kocka 6</span>
+            <h1>6</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <span>Kocka 7</span>
+            <h1>7</h1>
+        </div>
+        <div class="container">
+            <span>Kocka 8</span>
+            <h1>8</h1>
+        </div>
+        <div class="container">
+            <span>Kocka 9</span>
+            <h1>9</h1>
+        </div>
+    </div>
+<script>
+    $(document).ready(function (){
+        $(".row div").hover(function (){
+            $(this).find('span').toggle();
+            $(this).find('h1').toggle();
+        }, function (){
+            $(this).find('span').toggle();
+            $(this).find('h1').toggle();
+        })
+    })
+</script>
+</body>
+</html>

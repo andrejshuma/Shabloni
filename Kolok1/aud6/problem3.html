@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToolTip</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style>
+        .container{
+            background-color: grey;
+            padding: 50px;
+
+        }
+        .container div{
+            margin: 20px;
+            font-size: 30px;
+        }
+        input{
+            height: 30px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Provide info</h1>
+    <div class="container">
+        <div>
+        <label>First Name</label>
+        <input type="text" title="Please provide your first name.">
+    </div>
+        <div>
+        <label>Last Name</label>
+        <input type="text" title="Please provide your last name.">
+        </div>   <div>
+        <label>Password</label>
+        <input type="password" title="Please provide strong pass">
+    </div>      <div>
+        <label>Confirm Password</label>
+        <input type="password" title="Confirm pass">
+    </div>
+    </div>
+
+    <h1>Sveti Stefan</h1>
+    <h4 title="Slika" data-geo="data-geo">Viena Avstrija</h4>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $(document).tooltip({
+
+            })
+        })
+    </script>
+</body>
+</html>

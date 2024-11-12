@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vizuelna Ramka</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style>
+        nav{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            background-color: grey;
+        }
+        .container{
+            border: 1px solid black;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <button tabindex="1">Tab 1</button>
+        <button tabindex="2">Tab 2</button>
+        <button tabindex="3">Tab 3</button>
+    </nav>
+
+    <div class="container">
+        <h1>Content</h1>
+
+        <div id="1">Prviot content</div>
+        <div id="2">Vtor</div>
+        <div id="3">Tret</div>
+    </div>
+
+
+    <script>
+        $(document).ready(function (){
+            $(".container div").hide()
+
+            $("nav button").click(function (){
+                $(".container div").hide()
+                let index = $(this).attr("tabindex");
+                $("#"+index).show();
+            })
+        })
+
+    </script>
+</body>
+</html>

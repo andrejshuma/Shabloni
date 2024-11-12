@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prva</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style>
+        nav{
+            display: flex;
+            background-color: blue;
+        }
+        nav h1{
+            color: white;
+            font-size: 40px;
+            margin: 30px;
+        }
+        div{
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <h1 id="1">About us </h1>
+    <h1 id="2"> Studies</h1>
+    <h1 id="3"> Research</h1>
+    <h1 id="4"> Community</h1>
+</nav>
+
+<div>
+    <p> About us ....</p>
+</div>
+<div>
+    <p> Studies .... us ....</p>
+</div>
+<div>
+    <p> Research....</p>
+</div>
+<div>
+    <p> Community bal a ....</p>
+</div>
+
+
+
+<script>
+    $(document).ready(function (){
+        $("div").hide();
+        $("h1").click(function (){
+            const id = $(this).attr("id");
+            $("div").hide();
+            $("div").eq(id - 1).show();
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wizzard</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style>
+        #example-form div{
+            width: 300px;
+            display: inline-block;
+            height: 200px;
+        }
+        label{
+            display:  inline-block;
+            width: 100px;
+            margin: 5px;
+        }
+        input{
+            width: 90px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="status">
+
+
+</div>
+
+<form action="#" id="example-form">
+
+    <div>
+        <h3>Account</h3>
+        <section>
+            <label for="userName">User name</label>
+            <input id="userName" name="userName" type="text" class="required">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="text" class="required">
+            <label for="confirm">Confirm Password</label>
+            <input id="confirm" name="confirm" type="text" class="required">
+        </section>
+    </div>
+    <div>
+        <h3>Profile</h3>
+        <section>
+            <label for="name">First name</label>
+            <input id="name" name="name" type="text" class="required">
+            <label for="surname">Last name</label>
+            <input id="surname" name="surname" type="text" class="required">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="text" class="required email">
+            <label for="address">Address</label>
+            <input id="address" name="address" type="text">
+        </section>
+    </div>
+    <div>
+        <h3>Hints</h3>
+        <section>
+            <ul>
+                <li>Foo</li>
+                <li>Bar</li>
+                <li>Foobar</li>
+            </ul>
+        </section>
+    </div>
+    <div>
+        <h3>Finish</h3>
+        <section>
+            <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms">I agree with the Terms and Conditions.</label>
+        </section>
+    </div>
+</form>
+
+<input type="button" id="prev" value="prev"/>
+<input type="button" id="next" value="next"/>
+
+<script>
+    $(document).ready(function (){
+        var index = 0;
+
+        $.each($("#example-form div"), function (index, item){
+            var current = $(item);
+
+            if(index == 0)
+                $("#status").append("<span class='active'>" + current.find('h3').html() +"</span>");
+            else
+                $("#status").append("<span class='pending'>" + current.find('h3').html() +"</span>");
+        });
+        $("#example-form div").hide();
+        $("#example-form div:first-child").show();
+
+        $("#next").click(function (){
+            if(index<$("#example-form div").length - 1){
+                index = index+1;
+                showStep(index)
+            } else alert("DONE")
+        })
+        $("#prev").click(function (){
+            if(index > 0) {
+                index = index - 1;
+                showStep(index);
+            }
+        })
+    })
+    function showStep(index){
+        $("#example-form div:visible").hide();
+        $($("#example-form div")[index]).show();
+
+        $("#status span").removeClass('passed');
+        $("#status span").removeClass('active');
+        $("#status span").removeClass('pending');
+        $.each($("#status span"), function(i, item){
+            if(i < index) {
+                $(item).removeClass('pending');
+                $(item).addClass('passed');
+            }
+            else if(i == index) {
+                $(item).removeClass('pending');
+                $(item).addClass('active');
+            } else {
+                $(item).addClass('pending');
+            }
+        });
+    }
+</script>
+</body>
+</html>
