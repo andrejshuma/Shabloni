@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kameri Kolokviumska</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style>
+        nav{
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        nav div{
+            padding: 10px;
+            background-color: #666666;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 15px;
+            border: 1px solid black;
+        }
+        button{
+            display: none;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 100px;
+        }
+        .row{
+            display: flex;
+            gap: 15px;
+        }
+        .card{
+            border:1px solid black;
+            border-radius: 15px;
+            margin: 15px;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .acc{
+            background-color: antiquewhite;
+            border-radius: 5px;
+            border:1px solid black;
+            padding: 0;
+            margin: 0;
+            gap: 0;
+            width: 200px;
+        }
+        .acc h3{
+            border-radius: 5px;
+            border:1px solid black;
+        }
+        h3,h4{
+            margin: 0;
+            cursor: pointer;
+        }
+        .data{
+            display: none;
+        }
+    </style>
+
+
+</head>
+<body>
+    <nav>
+        <div title="compact">Compact Digital Cameras</div>
+        <div title="dslr">DSLR Cameras</div>
+        <div title="flashes">Speedlite Flashes</div>
+    </nav>
+
+    <div class="container" id="compact">
+        <h1>Compact Digital Cameras</h1>
+        <div class="row">
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="dslr">
+        <h1>DSLR Cameras</h1>
+        <div class="row">
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container" id="flashes">
+        <h1>Speedlite Flashes</h1>
+        <div class="row">
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+            <div class="card">
+                <h3>DJI MAVIC</h3>
+                <img src="images/DJI/MAVIC2.jpg" height="2560" width="2560"/>
+                <button>Add to Card</button>
+                <button>Rate</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="acc">
+        <div>
+            <h3>Services
+                & Apps</h3>
+            <div class="data">
+            <h4>Services</h4>
+                <div class="data">
+                    <ul>
+                        <li>Link</li>
+                        <li>Link</li>
+                        <li>Link</li>
+                        <li>Link</li>
+                        <li>Link</li>
+                    </ul>
+                </div>
+        </div>
+            <div class="data">
+            <h4>Apps</h4>
+                <div class="data">
+                    <ul>
+                        <li>Link</li>
+                        <li>Link</li>
+                        <li>Link</li>
+                        <li>Link</li>
+                        <li>Link</li>
+                    </ul>
+                </div>
+            </div>
+        </div><div>
+            <h3>Get Inspired</h3>
+            <div class="data">
+                <ul>
+                    <li>Link</li>
+                    <li>Link</li>
+                    <li>Link</li>
+                    <li>Link</li>
+                    <li>Link</li>
+                </ul>
+            </div>
+        </div><div>
+            <h3>Support</h3>
+        <div class="data">
+            <ul>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+                <li>Link</li>
+            </ul>
+        </div>
+        </div>
+    </div>
+
+    <script>
+            $(document).ready(function (){
+                $("#flashes, #compact, #dslr").hide()
+                $("nav div").click(function (){
+                    $("#flashes, #compact, #dslr").hide()
+                    let val = $(this).attr("title")
+                    $("#"+val).show()
+                })
+                $(".card").hover(function (){
+                    $(this).find("button").show()
+                },function (){
+                    $(this).find("button").hide()
+                })
+                $(".acc div h3, h4").click(function (){
+                    $(this).siblings(".data").slideToggle(200)
+                })
+            })
+    </script>
+</body>
+</html>
