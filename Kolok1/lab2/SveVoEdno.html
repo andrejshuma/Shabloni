@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 2</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+
+</head>
+<style>
+
+    .section {
+        display: inline-block;
+        margin-top:   40px;
+        width: auto;
+    }
+    .section h1{
+        background-color: red;
+        font-weight: bold;
+        font-size: 40px;
+        padding: 20px;
+        margin: 0;
+    }
+    ul{
+        list-style: none;
+        margin: 0;
+
+    }
+    .section:nth-of-type(n+2){
+        border-left:2px solid black ;
+    }
+    nav{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    nav div{
+        font-size: 30px;
+        font-weight: bold;
+        background-color: lightgray;
+        border-radius: 15px;
+        border: 1px solid black;
+        padding: 10px;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .container{
+        margin-top: 50px;
+
+    }
+</style>
+<body>
+    <nav>
+        <div value="1">Osnovna</div>
+        <div value="2">Title Section</div>
+        <div value="3">Modal Panel</div>
+    </nav>
+
+    <div id="1" class="container">
+        <p>Cane e gay</p>
+    </div>
+
+    <div id="2" class="container">
+        <div class="section">
+            <h1>Naslov 1</h1>
+            <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+                <li>Item 4</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h1>Naslov 2</h1>
+            <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+                <li>Item 4</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h1>Naslov 3</h1>
+            <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+                <li>Item 4</li>
+            </ul>
+        </div>
+    </div>
+    <div id="3" class="container">
+        <button id="modal"> Log in</button>
+        <p>Vasiot akaunt e: <span id="ovde"> </span></p>
+
+        <div id="dialog" title="Log in">
+            <p>Vnesi Ime na Akaunt</p>
+            <input id="input-data" type="text">
+        </div>
+    </div>
+    <script>
+        $(document).ready(function (){
+            $(".container").hide()
+
+            $("nav div").click(function (){
+                $(".container").hide()
+                let index =$(this).attr("value");
+                $("#"+index).show()
+            })
+
+            $( "#dialog" ).dialog({
+                autoOpen:false,
+                modal: true,
+                buttons:{
+                    Send: function (){
+                        $("#ovde").html($("#input-data").val());
+                        $( "#dialog" ).dialog("close")
+                    }
+                }
+            });
+
+            $("#modal").click(function(){
+                $( "#dialog" ).dialog("open");
+            });
+        })
+    </script>
+</body>
+</html>
