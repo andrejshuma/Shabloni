@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Armonika</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css" />
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style>
+      .acc {
+        background-color: bisque;
+        border-radius: 10px;
+        width: 100px;
+        margin: 0;
+      }
+      .acc div {
+        margin: 0;
+        border: 2px solid black;
+        border-radius: 10px;
+        text-align: center ;
+        cursor: pointer;
+      }
+      .title {
+        border: 1px solid black;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 15px;
+      }
+        .data {
+            display: none;
+        }
+      
+    </style>
+  </head>
+  <body>
+    <div class="acc">
+      <div>
+        <h3>Prv</h3>
+        <div class="data">
+          <ul>
+            <li>Prva</li>
+            <li>Druga</li>
+            <li>Treca</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3>Vtor</h3>
+        <div class="data">
+          <ul>
+            <li>Cetvrta</li>
+            <li>Peta</li>
+            <li>Sesta</li>
+          </ul>
+        </div>
+      </div>
+        <div>
+            <h3>Tret</h3>
+            <div class="data">
+            <ul>
+                <li>Sedma</li>
+                <li>Osmta</li>
+                <li>Deveta</li>
+            </ul>
+            </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("h3").click(function() {
+                $(this).siblings(".data").slideToggle();
+            });
+        });
+    </script>
+  </body>
+</html>

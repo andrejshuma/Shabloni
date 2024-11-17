@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Dialog - Modal confirmation</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+    <style>
+
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            var dialog, form,
+
+                name = $( "#name" ),
+                email = $( "#email" ),
+                password = $( "#password" ),
+                allFields = $( [] ).add( name ).add( email ).add( password ),
+                tips = $( ".validateTips" );
+
+
+
+            function addUser() {
+                var valid = true;
+                allFields.removeClass( "ui-state-error" );
+
+
+                if ( valid ) {
+                    $( "#users tbody" ).append( "<tr>" +
+                        "<td>" + name.val() + "</td>" +
+                        "<td>" + email.val() + "</td>" +
+                        "<td>" + password.val() + "</td>" +
+                        "</tr>" );
+                    dialog.dialog( "close" );
+                }
+                return valid;
+            }
+
+            dialog = $( "#dialog-form" ).dialog({
+                autoOpen: false,
+                height: 400,
+                width: 350,
+                modal: true,
+                buttons: {
+                    "Create an account": addUser,
+                    Cancel: function() {
+                        dialog.dialog( "close" );
+                    }
+                },
+                close: function() {
+                    form[ 0 ].reset();
+                    allFields.removeClass( "ui-state-error" );
+                }
+            });
+
+            form = dialog.find( "form" ).on( "submit", function( event ) {
+                event.preventDefault();
+                addUser();
+            });
+
+            $( "#create-user" ).button().on( "click", function() {
+                dialog.dialog( "open" );
+            });
+        } );
+    </script>
+</head>
+<body>
+
+<div id="dialog-form" title="Create new user">
+    <p class="validateTips">All form fields are required.</p>
+
+    <form>
+        <fieldset>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" value="jane@smith.com" class="text ui-widget-content ui-corner-all">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" value="xxxxxxx" class="text ui-widget-content ui-corner-all">
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+    </form>
+</div>
+
+
+<div id="users-contain" class="ui-widget">
+    <h1>Existing Users:</h1>
+    <table id="users" class="ui-widget ui-widget-content">
+        <thead>
+        <tr class="ui-widget-header ">
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>John Doe</td>
+            <td>john.doe@example.com</td>
+            <td>johndoe1</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<button id="create-user">Create new user</button>
+
+
+</body>
+</html>

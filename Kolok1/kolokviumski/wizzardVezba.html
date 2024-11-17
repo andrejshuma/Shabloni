@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Wizzard</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css" />
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style>
+      .stages {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 50px;
+      }
+      .title {
+        border: 1px solid black;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 15px;
+        margin-bottom: 10px;
+      }
+      .screen {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid black;
+        padding: 20px;
+        border-radius: 15px;
+      }
+      .next {
+        margin-top: 10px;
+      }
+      .prev {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stages">
+      <div class="title">Name and Surname</div>
+      <div class="title">Email and Password</div>
+      <div class="title">Preferances</div>
+      <div class="title">Terms and Conditons</div>
+    </div>
+
+    <div id="1" class="screen">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" />
+      <br />
+      <label for="surname">Surname:</label>
+      <input type="text" id="surname" name="surname" />
+      <br />
+      <button class="next">Next</button>
+    </div>
+    <div id="2" class="screen">
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" />
+      <br />
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" />
+      <br />
+      <button class="next">Next</button>
+      <button class="prev">Prev</button>
+    </div>
+    <div id="3" class="screen">
+      <label for="color">Color:</label>
+      <input type="color" id="color" name="color" />
+      <br />
+      <label for="number">Number:</label>
+      <input type="number" id="number" name="number" />
+      <br />
+      <label for="preference">Preference:</label>
+      <input type="radio" id="preference1" name="preference" value="option1" />
+      Option 1
+      <input type="radio" id="preference2" name="preference" value="option2" />
+      Option 2
+      <br />
+      <button class="next">Next</button>
+      <button class="prev">Prev</button>
+    </div>
+    <div id="4" class="screen">
+      <input type="checkbox" id="terms" name="terms" />
+      <label for="terms">I agree to the terms and conditions</label>
+      <br />
+      <button class="prev">Prev</button>
+      <button id="finish">Finish</button>
+    </div>
+    <div id="finishScreen" class="screen">
+      <h1>Thank you for registering</h1>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $(".screen").hide();
+        $("#1").show();
+        var index = 1;
+        $(".next").click(function () {
+          index = parseInt(index);
+          index = index + 1;
+          console.log(index);
+          $(".screen").hide();
+          $("#" + index).show();
+        });
+        $(".prev").click(function () {
+          if (index >= 0) {
+            index = index - 1;
+            $(".screen").hide();
+            $("#" + index).show();
+          }
+        });
+        $("#finish").click(function () {
+          $(".screen").hide();
+          $("#finishScreen").show();
+        });
+      });
+    </script>
+  </body>
+</html>

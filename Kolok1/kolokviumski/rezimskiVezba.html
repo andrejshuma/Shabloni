@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rezimski prozorec</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css" />
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style></style>
+  </head>
+  <body>
+    <button id="otvori">Napravi post</button>
+
+    <div id="dialog" title="Napravi post">
+      <form>
+        <label for="naslov">Naslov:</label>
+        <input type="text" id="naslov" name="naslov" />
+        <br />
+        <label for="sodrzina">Sodrzina:</label>
+        <textarea id="sodrzina" name="sodrzina"></textarea>
+      </form>
+    </div>
+
+    <div id="ovde" title="Post"></div>
+    <script>
+      $(document).ready(function () {
+        $("#dialog").dialog({
+          autoOpen: false,
+          modal: true,
+          buttons: {
+            "Napravi post": function () {
+              var naslov = $("#naslov").val();
+              var sodrzina = $("#sodrzina").val();
+              $("#ovde").append(
+                "<h2>" + naslov + "</h2><p>" + sodrzina + "</p>"
+              );
+              $(this).dialog("close");
+            },
+            Otkazi: function () {
+              $(this).dialog("close");
+            },
+          },
+        });
+      });
+      $("#otvori").click(function () {
+        $("#dialog").dialog("open");
+      });
+    </script>
+  </body>
+</html>
