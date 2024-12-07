@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+</head>
+<body>
+
+Name <input type="text" title="Enter your surname">
+SurName <input type="text" title="Enter your surname">
+<h1>Crkvata Sveti Andrej</h1>
+
+<h3 title="">Canyon Matka</h3>
+
+<select id="effect">
+    <option value="blind">Blind</option>
+    <option value="bounce">Bounce</option>
+    <option value="clip">Clip</option>
+    <option value="drop">Drop</option>
+    <option value="explode">Explode</option>
+    <option value="fade">Fade</option>
+    <option value="fold">Fold</option>
+    <option value="highlight">Highlight</option>
+    <option value="puff">Puff</option>
+    <option value="pulsate">Pulsate</option>
+    <option value="scale">Scale</option>
+    <option value="shake">Shake</option>
+    <option value="size">Size</option>
+    <option value="slide">Slide</option>
+    <option value="transfer">Transfer</option>
+</select>
+
+<script>
+    $(document).ready(function (){
+
+        var mesto = $("#effect")
+
+        mesto.on("change", function () {
+            let effect = $("#effect").val();
+            $(document).tooltip("option", "show", { effect: effect, delay: 50 });
+        });
+
+        $(document).tooltip({
+            show: {
+                effect: mesto.val(),
+                delay: 50
+            }
+        })
+
+    })
+</script>
+</body>
+</html>

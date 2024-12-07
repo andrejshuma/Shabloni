@@ -2,38 +2,8 @@
   <head>
     <title>TooltipExample</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link
-      rel="stylesheet"
-      href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    />
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script type="text/javascript">
-      $(function () {
-        $(document).tooltip({
-          items: "img, [data-geo], [title]",
-          content: function () {
-            var element = $(this);
-            if (element.is("[data-geo]")) {
-              var text = element.text();
-              return (
-                "<img class='map' alt='" +
-                text +
-                "' src='./images/st-stephens.jpg'>"
-              );
-            }
 
-            if (element.is("img")) {
-              return element.attr("alt");
-            }
 
-            if (element.is("[title]")) {
-              return element.attr("title");
-            }
-          },
-        });
-      });
-    </script>
     <style>
       .photo {
         width: 300px;
@@ -60,6 +30,35 @@
         display: inline-block;
       }
     </style>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <script type="text/javascript">
+      $(function () {
+        $(document).tooltip({
+          items: "img, [data-geo], [title]",
+          content: function () {
+            var element = $(this);
+            if (element.is("[data-geo]")) {
+              var text = element.text();
+              return (
+                      "<img class='map' alt='" +
+                      text +
+                      "' src='st-stephens.jpg '>"
+              );
+            }
+
+            if (element.is("img")) {
+              return element.attr("alt");
+            }
+
+            if (element.is("[title]")) {
+              return element.attr("title");
+            }
+          },
+        });
+      });
+    </script>
   </head>
   <body>
     <h3>Please provide your information to see the St. Stephen's Cathedral</h3>
