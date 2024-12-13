@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Selection</title>
+  <link rel="stylesheet" href="../jquery/jquery-ui.css">
+  <script src="../jquery/jquery.js"></script>
+  <script src="../jquery/jquery-ui.js"></script>
+</head>
+<style>
+  .highlight{
+    background-color: grey;
+  }
+  ul {
+    list-style: none;
+  }
+</style>
+<body>
+  <div>
+    <button id="delete">Delete</button>
+    <button id="restore">Restore</button>
+
+    <ul>
+      <li><input type="checkbox">Sender 1 Subject 2</li>
+      <li><input type="checkbox">Sender 1 Subject 2</li>
+      <li><input type="checkbox">Sender 1 Subject 2</li>
+      <li><input type="checkbox">Sender 1 Subject 2</li>
+      <li><input type="checkbox">Sender 1 Subject 2</li>
+    </ul>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $("[type=checkbox]").click(function () {
+        if($(this).prop("checked")){
+          $(this).parent().addClass("highlight")
+        }
+        else{
+          $(this).parent().removeClass("highlight")
+        }
+      })
+      $("#delete").click(function () {
+        $(".highlight").hide()
+      })
+      $("#restore").click(function () {
+        $(".highlight").show().removeClass("highlight")
+        $('input').filter(':checkbox').removeAttr('checked');
+      })
+    })
+  </script>
+</body>
+</html>

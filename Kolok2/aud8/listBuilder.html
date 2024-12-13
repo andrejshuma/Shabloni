@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Builder</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style>
+        ul {
+            list-style: none;
+
+        }
+        li{
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid black;
+            background-color: whitesmoke;
+            cursor: pointer;
+        }
+        .forma{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .ui-selected{
+            background-color: pink;
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="forma">
+<ul id="leva">
+    <li>Sender 1 Subject 2</li>
+    <li>Sender 1 Subject 2</li>
+    <li>Sender 1 Subject 2</li>
+    <li>Sender 1 Subject 2</li>
+    <li>Sender 1 Subject 2</li>
+</ul>
+    <div class="kocpinja">
+        <button id="left"> < </button>
+        <button id="right"> > </button>
+    </div>
+<ul id="desna">
+    <li>Sender 1 Subject 2</li>
+    <li>Sender 1 Subject 2</li>
+
+</ul>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $("ul").selectable({
+
+        })
+        $("#right").click(function () {
+            $("#leva .ui-selected").appendTo("#desna").removeClass("ui-selected")
+        })
+        $("#left").click(function () {
+            $("#desna .ui-selected").appendTo("#leva").removeClass("ui-selected")
+        })
+    })
+</script>
+</body>
+</html>
