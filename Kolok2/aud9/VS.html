@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>233053</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style>
+        section {
+            display: flex;
+            gap: 100px;
+            align-items: flex-start;
+        }
+
+        li {
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        button {
+            cursor: pointer;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <div>
+        <h3>Studenti</h3>
+        <ul id="dodavanje">
+            <li>Ime Prezime 233053</li>
+            <li>Ime Prezime 233090</li>
+            <li>Ime Prezime 233062</li>
+            <li>Ime Prezime 233179</li>
+            <li>Ime Prezime 231209</li>
+        </ul>
+    </div>
+    <div>
+        <h3>Rezultati</h3>
+        <ul id="novi">
+            <li title="100">Petar Canoski 233053</li>
+        </ul>
+    </div>
+</section>
+<button id="kopce">Add Student</button>
+<div id="dodajstudent">
+    <label style="font-size: larger">Ime i Prezime</label>
+    <input type="text" placeholder="Name and Surname" id="namesur">
+    <br><br>
+    <label style="font-size: larger">Indeks</label><br>
+    <input type="text" placeholder="Indeks" id="indeks">
+</div>
+<div id="pointsdialog">
+    <label style="font-size: larger">Points</label><br>
+    <input type="text" id="poeni">
+</div>
+<nav>
+    <ul id="server">
+        <li>Titanic</li>
+        <li>Harry Potter</li>
+        <li>Fight Club</li>
+        <li>La La Land</li>
+        <li>Rocky IV</li>
+        <li>Hitch</li>
+        <li>Good Will Hunting</li>
+    </ul>
+    <h4>Dodaj Filmche</h4>
+    <input type="text" id="filmche">
+    <button id="dodajfilmche">Add Movie</button>
+    <h3>Title:</h3>
+    <p id="title"></p>
+    <h3>Rating:</h3>
+    <p id="rate"></p>
+    <h3>imdID:</h3>
+    <p id="id"></p>
+    <h3>Poster:</h3>
+    <img src="" id="img">
+</nav>
+<script>
+    $(document).ready(function () {
+        $("#kopce").click(function ()
+        {
+            $("#dodajstudent").dialog("open")
+        })
+
+        $("#dodajstudent").dialog({
+            autoOpen:false,
+            modal:true,
+            show:"explode",
+            buttons:{
+                OK:function () {
+                    let namesur = $("#namesur").val()
+                    let indeks = $("#indeks").val()
+                    let list = "<li>"+namesur+" "+indeks+"</li>"
+                    $("#dodavanje").append(list)
+                    $("#dodajstudent").dialog("close")
+                }
+            }
+        })
+
+        $("#dodavanje").sortable({
+            connectWith: "#novi"
+        })
+
+        var $studentnov = 0
+
+        $("#pointsdialog").dialog({
+            modal: true,
+            autoOpen: false,
+            buttons: {
+                OK:function () {
+                    let poen = $("#poeni").val()
+
+                    $studentnov.attr("title", poen)
+                    $("#pointsdialog").dialog("close")
+                }
+            }
+        })
+
+
+        $("#novi").sortable({
+            receive: function (event, ui){
+                $studentnov = ui.item
+                $("#pointsdialog").dialog("open")
+            }
+        })
+
+        $("#server").on("click","li",function ()
+        {
+            //625fc208
+            $.ajax({
+                url:"https://www.omdbapi.com/?apikey=625fc208&t="+$(this).html(),
+                dataType: "json",
+                success:function (data) {
+                    $("#title").html(data.Title)
+                    $("#rate").html(data.imdbRating)
+                    $("#id").html(data.imdbID)
+                    $("#img").attr("src",data.Poster)
+                }
+            })
+        })
+
+        $("#dodajfilmche").click(function () {
+            let film = $("#filmche").val()
+            $("#server").append("<li>"+film+"</li>")
+        })
+
+    }).tooltip({
+
+    })
+</script>
+</body>
+</html>

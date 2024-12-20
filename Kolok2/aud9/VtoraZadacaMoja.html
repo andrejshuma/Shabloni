@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vtora Zadaca</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style>
+        ul{
+            list-style: none;
+        }
+        li{
+            padding: 5px;
+            margin: 5px;
+            border: 1px solid black;
+            cursor: pointer;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<button id="add">Add Movie</button>
+<div id="dodajfilm">
+    Movie Name : <input type="text" id="moviename">
+</div>
+<ul id="server">
+    <li>Rocky IV</li>
+    <li>Toma</li>
+    <li>The Notebook</li>
+    <li>Titanic</li>
+</ul>
+
+<div id="info">
+    <div id="title"><strong>Title: </strong></div>
+    <div id="ID"> <strong>ID: </strong></div>
+    <div id="rating"><strong>Rating:</strong> </div>
+    <div id="directors"><strong>Directos:</strong> </div>
+    <div id="actors"><strong>Actors:</strong> </div>
+    <img src="" alt="" id="img">
+</div>
+<script>
+    $(document).ready(function () {
+
+
+        $("#add").click(function () {
+            $("#dodajfilm").dialog("open");
+        });
+        $("#dodajfilm").dialog({
+            autoOpen: false,
+            modal: true,
+            title: "Add Movie",
+            buttons: {
+                "Add": function () {
+                    let string = "<li>"+$("#moviename").val()+"</li>"
+                    $("#server").append(string);
+                    $(this).dialog("close");
+                },
+                "Cancel": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+        $("#server").on("click","li",function () {
+            let title = $(this).html();
+            $.ajax({
+                url:"http://www.omdbapi.com/?i=tt3896198&apikey=45a87fae&t="+title,
+                dataType:"json",
+                success: function (data) {
+                    $("#title").html(data.Title)
+                    $("#rating").html(data.imdbRating)
+                    $("#ID").html(data.imdbID)
+                    $("#directors").html(data.Director)
+                    $("#actors").html(data.Actors)
+                    $("#img").attr("src",data.Poster)
+                }
+            });
+        });
+    })
+</script>
+</body>
+</html>

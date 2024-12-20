@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prva zadaca</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style>
+        .container{
+            padding: 30px;
+            width: 300px;
+            height: 200px;
+            vertical-align: center;
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            cursor: pointer;
+            border: 1px solid black;
+            padding: 5px;
+            margin: 5px;
+        }
+        li:nth-child(odd) { background: lightgray;}
+        li:nth-child(even) { background: white; }
+    </style>
+</head>
+<body>
+<div style="display: flex">
+    <div class="container" style="border-right:1px solid black ">
+        <h2>Enrolled Students</h2>
+
+        <ul id="enrolled">
+            <li>Andrej Andreevski <span>233062</span></li>
+            <li>Petar Andreevski <span>233052</span></li>
+            <li>Cane Andreevski <span>233179</span></li>
+        </ul>
+
+        <button id="add">Add New Student</button>
+    </div>
+
+    <div class="container">
+        <h2>Took the test</h2>
+
+        <ul id="tested">
+            <li title="90">Petar Cance <span>233333</span></li>
+            <li title="100">Andrej Cance <span>133333</span></li>
+        </ul>
+    </div>
+</div>
+    <div id="dialogce" title="Add Student">
+        <p>Vnesi informacii za student</p>
+        <div>
+        Ime: <input type="text" id="name">
+        </div>
+        <div>
+        Index: <input type="text" id="index">
+    </div>
+
+    </div>
+
+    <div id="poeni" title="Points">
+        <p>Vnesi informacii za student</p>
+        <div>
+            Poeni: <input type="text" id="points">
+        </div>
+
+    </div>
+<script>
+    $(document).ready(function () {
+        $("#add").click(function () {
+            $( "#dialogce" ).dialog( "open" );
+        })
+
+        $("#dialogce").dialog({
+            autoOpen:false,
+            modal: true,
+            buttons: {
+                "Add": function () {
+                    $( "#enrolled" ).append( "<li>" + $("#name").val() + " <span>" + $("#index").val() + "</span> </li>" );
+                    $( this ).dialog( "close" );
+                },
+                "Cancel": function () {
+                    $( this ).dialog( "close" );
+                }
+            },
+            close: function() {
+                $("#name").val( "" );
+                $("#index").val( "" );
+            }
+        })
+        $( "#enrolled" ).sortable({
+            connectWith: "#tested"
+        });
+
+
+
+
+        var $student = 0;
+
+        $("#poeni").dialog({
+            autoOpen:false,
+            modal: true,
+            buttons: {
+                "Add": function () {
+                    var poen = $("#points").val()
+                    if(isNaN(poen) || poen < 50)
+                    {
+                        alert("Ne polozil")
+                        $(this).dialog( "close" );
+                    }
+                    $student.attr("title", poen)
+                    $(this).dialog( "close" );
+                }
+            },
+            close: function() {
+                $("#points").val( "" );
+
+            }
+        })
+        $( "#tested" ).sortable({
+            receive:function(event, ui){
+                 $student = ui.item;
+                $( "#poeni" ).dialog( "open" );
+            }
+        });
+        $("li").tooltip();
+
+
+    })
+</script>
+</body>
+</html>
