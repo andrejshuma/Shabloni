@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formula Sezoni</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style>
+        ul {
+            list-style: none;
+        }
+        li{
+            margin: 5px;
+            border: 1px solid black;
+            width: 100px;
+            padding: 20px;
+            cursor: pointer;
+        }
+        a{
+            display: none;
+        }
+        .item{
+            display: inline-block;
+            vertical-align: top;
+            padding: 20px;
+        }
+        .item:first-of-type{
+            border-right: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<div class="item">
+    <ul id="seasons">
+        <li id="2020"> Season 2020</li>
+        <li id="2021"> Season 2021</li>
+        <li id="2022"> Season 2022</li>
+        <li id="2023"> Season 2023</li>
+        <li id="2024"> Season 2024</li>
+    </ul>
+</div>
+
+<div class="item">
+    <img src="" id="load">
+    <ul id="drivers">
+
+    </ul>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#seasons li").click(function () {
+            const season =  $(this).attr("id")
+            $("#load").attr("src","img.png")
+            $("#drivers").html("")
+            $.ajax({
+                url:"http://ergast.com/api/f1/"+season+"/drivers.json",
+                dataType:"jsonp",
+                success:function (data) {
+                    $("#load").attr("src","")
+                    $.each(data.MRData.DriverTable.Drivers, function (index,item) {
+                        $("#drivers").append("<li id='"+item.nationality+"'>"+item.givenName+"<br>"+item.familyName+"<br>"+item.familyName+"<br><a href='"+item.url+"'>Biography</a></li>")
+                    })
+                }
+            })
+            $(document).on("click","#drivers li",function () {
+                $(this).find("a").slideToggle(200)
+            })
+        })
+    })
+</script>
+</body>
+</html>
