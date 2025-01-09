@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aud10</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style>
+        .item{
+            display: inline-block;
+            padding: 20px;
+            width: 250px;
+            vertical-align: top;
+        }
+        ul{
+            list-style-type: none;
+        }
+        .item:nth-child(2){
+            border-left: 1px solid black;
+        }
+        .selected{
+            background: lightblue;
+        }
+    </style>
+</head>
+<body>
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Studenti</a></li>
+        <li><a href="#tabs-2">Ocenki</a></li>
+    </ul>
+    <div id="tabs-1">
+        <div class="item">
+            <h3>Пред увид</h3>
+            <ul id="left-list">
+                <li title="30" indexche="111111"><input type="checkbox">Име презиме 1</li>
+                <li title="85" indexche="111112"><input type="checkbox">Име презиме 2</li>
+                <li title="70" indexche="111113"><input type="checkbox">Име презиме 3</li>
+                <li title="60" indexche="111114"><input type="checkbox">Име презиме 4</li>
+                <li title="100" indexche="111115"><input type="checkbox">Име презиме 5</li>
+            </ul>
+        </div>
+        <div class="item">
+            <h3>После увид</h3>
+            <ul id="right-list">
+                <li title="65" indexche="111116"><input type="checkbox">Име презиме 6</li>
+                <li title="85" indexche="111117"><input type="checkbox">Име презиме 7</li>
+            </ul>
+        </div>
+        <div>
+            <button id="to_right">>></button>
+            <button id="to_left"><<</button>
+        </div>
+    </div>
+
+    <div id="tabs-2">
+        <div id="progress_6"></div>
+        <p>Оценка 6: <span id="procent_6"></span></p>
+        <div id="progress_7"></div>
+        <p>Оценка 7: <span id="procent_7"></span></p>
+        <div id="progress_8"></div>
+        <p>Оценка 8: <span id="procent_8"></span></p>
+        <div id="progress_9"></div>
+        <p>Оценка 9: <span id="procent_9"></span></p>
+        <div id="progress_10"></div>
+        <p>Оценка 10: <span id="procent_10"></span></p>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function (){
+        $("#tabs").tabs();
+        $(document).tooltip({
+            content: function (){
+                return "Поени: "+$(this).attr("title")+" Индекс: "+$(this).attr("indexche")
+            }
+        })
+        $("[type=checkbox]").click(function (){
+            $(this).parent().toggleClass("selected")
+        })
+        $("#to_right").click(function (){
+            $("#left-list .selected").each(function (index,item){
+                if($(this).attr("title")>50){
+                    $(this).appendTo("#right-list").removeClass("selected")
+                    $(this).find("[type=checkbox]").prop("checked",false)
+                }
+                else{
+                    alert("Не може студентот со оценка помала од 50 да се премести")
+                }
+            })
+            updateProgress();
+
+        })
+        $("#to_left").click(function (){
+            $("#right-list .selected").each(function (index,item){
+                $(this).appendTo("#left-list").removeClass("selected")
+                $(this).find("[type=checkbox]").prop("checked",false)
+            })
+            updateProgress();
+
+        })
+        function updateProgress() {
+            var total = $("li").length;
+            for (let i = 6; i <11 ; i++) {
+                var student_mark=0;
+                $("#right-list li").each(function (index,item){
+                    if($(this).attr("title")>((i-1)*10) && $(this).attr("title")<=(i*10)){
+                        student_mark++;
+                    }
+                    if($(this).attr("title")==50 && i==6){student_mark+=1}
+                })
+                var procent_ocenka = ((student_mark/total)*100)
+                $("#progress_"+i).progressbar({value: procent_ocenka})
+                $("#procent_"+i).html(procent_ocenka.toPrecision(3)+"%")
+            }
+        }
+        updateProgress();
+    })
+</script>
+</body>
+</html>
