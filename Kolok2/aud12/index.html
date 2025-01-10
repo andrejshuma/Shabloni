@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Limit i Offset</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style>
+        ul {
+            list-style: none;
+        }
+
+        li {
+            padding: 2px;
+            border: 1px solid black;
+            margin: 5px;
+            width: 100px;
+            cursor: pointer;
+        }
+
+        #details {
+            display: none;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .card {
+            padding: 20px;
+            margin: 5px;
+            border: 1px solid black;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+<h1>Vozaci na motori</h1>
+<div id="menu">
+    <h3>Odberi Sezona</h3>
+    <ul>
+        <li year="2015">Сезона 2015</li>
+        <li year="2016">Сезона 2016</li>
+        <li year="2017">Сезона 2017</li>
+        <li year="2018">Сезона 2018</li>
+        <li year="2019">Сезона 2019</li>
+        <li year="2020">Сезона 2020</li>
+        <li year="2021">Сезона 2021</li>
+    </ul>
+</div>
+
+<div id="details">
+    <div id="cards">
+
+    </div>
+    <button id="load_more">Load More</button>
+</div>
+
+
+<script>
+
+
+    $(document).ready(function () {
+        var limit = 3
+        var offset = 0
+        var year = 0
+
+        function load_drivers() {
+
+            $.ajax({
+                url: "https://ergast.com/api/f1/" + year + "/drivers.json?limit=" + limit + "&offset=" + offset,
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                    offset += limit
+                    $row = $("<div class='row'> </div>")
+                    $.each(data.MRData.DriverTable.Drivers, function (index, item) {
+                        $("<div class='card'><p>" + item.givenName + "</p><p>" + item.familyName + "</p><p>" + item.dateOfBirth + "</p><p>" + item.nationality + "</p><p><a target='_blank' href='" + item.url + "'>Bio</a></p></div>").appendTo($row)
+                    })
+                    $row.appendTo("#cards")
+                    $("#details").show()
+
+                }
+            })
+
+        }
+
+
+        $("#load_more").click(function () {
+            load_drivers()
+        })
+        $("ul li").click(function () {
+            $("#cards").html("")
+            year = $(this).attr("year")
+            offset = 0
+            load_drivers()
+        })
+
+    })
+
+</script>
+</body>
+</html>
