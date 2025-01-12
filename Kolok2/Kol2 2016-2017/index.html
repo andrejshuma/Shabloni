@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOOKS</title>
+    <link rel="stylesheet" href="jquery/jquery-ui.css">
+    <script src="jquery/jquery.js"></script>
+    <script src="jquery/jquery-ui.js"></script>
+    <style>
+        #right, #left {
+            padding: 20px;
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            cursor: pointer;
+            padding: 10px;
+            margin: 5px;
+
+        }
+        li:nth-of-type(odd){
+            background-color: lightblue;
+        }
+        #right{
+            display: flex;
+            padding: 20px;
+            background-color: lightgray;
+            border: 1px solid black;
+            vertical-align: top;
+        }
+        #img{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="forma" style="margin: 10px">
+    <label>ISBN:</label><input type="text" id="isbn">
+    <span style="color: grey; opacity: 0.5">Vnesi ISBN broj</span>
+    <button id="add" style="margin: 10px">Add Book</button>
+</div>
+<div id="left" style="border-right:1px solid black; display: inline-block ">
+    <ul id="books">
+
+    </ul>
+</div>
+
+<div id="right" style="display: inline-block">
+    <div id="isbn_broj"></div>
+    <div id="publishers"></div>
+    <img src="" id="img">
+    <a href="" id="link" style="display: block">Dopolnitelni informacii</a>
+</div>
+
+<div class="social" style="margin-top: 100px">
+    <a href="http://www.delicious.com/"><img src="images/delicious.png" height="48" width="48"/></a>
+    <a href="http://digg.com/"><img src="images/digg.png" height="48" width="48"/></a>
+    <a href="http://www.facebook.com/"><img src="images/facebook.png" height="48" width="48"/></a>
+    <a href="http://www.flickr.com/"><img src="images/flickr.png" height="48" width="48"/></a>
+    <a href="http://www.linkedin.com/"><img src="images/linkedin.png" height="48" width="48"/></a>
+    <a href="http://www.reddit.com/"><img src="images/reddit.png" height="48" width="48"/></a>
+    <a href="http://feeds2.feedburner.com/marcofolio"><img src="images/rss.png" height="48" width="48"/></a>
+    <a href="http://twitter.com/"><img src="images/twitter.png" height="48" width="48"/></a>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#right").hide()
+        $("#add").click(function () {
+            var isbn = $("#isbn").val()
+            $.ajax({
+                url: "https://openlibrary.org/api/books?bibkeys=ISBN:" + isbn + "&jscmd=details&callback=mycallback",
+                dataType: "jsonp",
+                success: function (data) {
+                    $("<li class='item' isbn='"+isbn+"' publishers='"+data["ISBN:" + isbn]["details"]["publishers"]+"' link='"+data["ISBN:" + isbn]["info_url"]+"' slika='"+data["ISBN:" + isbn]["thumbnail_url"]+"'>" + data["ISBN:" + isbn]["details"]["title"] + "</li>").appendTo("#books")
+
+                }
+            })
+        })
+        $(document).on("click", "#books li",function () {
+            $("#right").show()
+            $("#isbn_broj").html($(this).attr("isbn"))
+            $("#publishers").html($(this).attr("publishers"))
+            $("#img").attr("src", $(this).attr("slika"))
+            $("#link").attr("href", $(this).attr("link"))
+        })
+    })
+</script>
+
+</body>
+</html>

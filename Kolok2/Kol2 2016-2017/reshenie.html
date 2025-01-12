@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        span{
+            color: grey;
+        }
+        #books, #details{
+            display: inline-block;
+            width: 200px;
+            vertical-align: top;
+        }
+        div img{
+            width: 50px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/vader/jquery-ui.min.css"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+
+</head>
+<body>
+<h1>Book app</h1>
+<div>
+    <label>ISBN:</label><input type="text" id="isbn"><span>10 or 13 digit number</span><button id="add">Add book</button>
+</div>
+<ul id="books">
+</ul>
+<div id="details">
+    <h3 id="title"></h3>
+    <p id="isbn_book"></p>
+    <p id="publ"></p>
+    <img src="" id="img">
+    <a href="" id="link">Link</a>
+</div>
+<div>
+    <a href="http://twitter.com/"><img src="images/twitter.png" height="48" width="48"/></a>
+    <a href="http://www.reddit.com/"><img src="images/reddit.png" height="48" width="48"/></a>
+    <a href="http://www.linkedin.com/"><img src="images/linkedin.png" height="48" width="48"/></a>
+    <a href="http://www.flickr.com/"><img src="images/flickr.png" height="48" width="48"/></a>
+    <a href="http://www.facebook.com/"><img src="images/facebook.png" height="48" width="48"/></a>
+    <a href="http://digg.com/"><img src="images/digg.png" height="48" width="48"/></a>
+    <a href="http://www.delicious.com/"><img src="images/delicious.png" height="48" width="48"/></a>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#details").hide()
+        $("#add").click(function () {
+            var isbn = $("#isbn").val()
+            $.ajax({
+                url: "https://openlibrary.org/api/books?bibkeys=ISBN:"+isbn+"&jscmd=details&callback=mycallback",
+                dataType: "jsonp",
+                success: function (data){
+                    $("<li isbn='"+isbn+"' publishers='"+data["ISBN:"+isbn]["details"]["publishers"][0]+"' image='"+data["ISBN:"+isbn]["thumbnail_url"]+"' link='"+data["ISBN:"+isbn]["preview_url"]+"'>"+data["ISBN:"+isbn]["details"]["title"]+"</li>").appendTo("#books")
+                }
+            })
+        })
+        $(document).on("click", "#books li", function () {
+            $("#title").html($(this).html())
+            $("#isbn_book").html($(this).attr("isbn"))
+            $("#publ").html($(this).attr("publishers"))
+            $("#img").attr("src", $(this).attr("image"))
+            $("#link").attr("href", $(this).attr("link"))
+            $("#details").show()
+        })
+    })
+</script>
+</body>
+</html>
