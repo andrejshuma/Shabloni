@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drivers App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/vader/jquery-ui.min.css"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script>
+        /*Link the js files properly!*/
+        $(document).ready(function () {
+            function get_data(year) {
+                $.ajax({
+                    url: "https://ergast.com/api/f1/"+year+"/drivers.json",
+                    dataType: "json",
+                    success: function (data) {
+                        $.each(data.MRData.DriverTable.Drivers,function (i, item) {
+                            var element = $("<li>").append((i+1)+". "+item.givenName+" "+item.familyName)
+                            element.attr("nationality", item.nationality)
+                            element.attr("date", item.dateOfBirth)
+                            element.attr("url", item.url)
+                            element.appendTo("#"+year)
+                        })
+                    }
+                })
+            }
+            get_data(2016)
+            get_data(2017)
+            $("#2016, #2017").sortable({
+                connectWith: "#fav"
+            })
+            $("#fav").sortable({
+                connectWith: "#2016, #2017"
+            })
+            $("#dop_info").hide()
+            $(document).on("click", "#fav li", function () {
+                $("#name").html($(this).html())
+                $("#nationality").html($(this).attr("nationality"))
+                $("#date").html($(this).attr("date"))
+                $("#link").attr("href", $(this).attr("url"))
+                $("#dop_info").show()
+            })
+        })
+    </script>
+    <style>
+        div{
+            display: inline-block;
+            width: 250px;
+            border: 1px solid black;
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul id="2016">
+    </ul>
+</div>
+<div>
+    <ul id="2017">
+    </ul>
+</div>
+<div>
+    <h2>Favourite drivers</h2>
+    <ul id="fav">
+        <li>Drop your fav drivers</li>
+    </ul>
+</div>
+<div id="dop_info">
+    <p>Name: <span id="name"></span></p>
+    <p>Nationality: <span id="nationality"></span></p>
+    <p>Date of birth: <span id="date"></span></p>
+    <a id="link" href="">Link</a>
+</div>
+
+<section>
+    <a href="www.facebook.com"><img src="images/facebook.png" height="48" width="48"/></a>
+    <a href="www.reddit.com"><img src="images/reddit.png" height="48" width="48"/></a>
+    <a href="www.twitter.com"><img src="images/twitter.png" height="48" width="48"/></a>
+    <a href="www.linkedin.com"><img src="images/linkedin.png" height="48" width="48"/></a>
+</section>
+</body>
+</html>
