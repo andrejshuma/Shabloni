@@ -32,12 +32,7 @@
   <script>
     $(document).ready(function () {
       $("[type=checkbox]").click(function () {
-        if($(this).prop("checked")){
-          $(this).parent().addClass("highlight")
-        }
-        else{
-          $(this).parent().removeClass("highlight")
-        }
+        $(this).parent().toggleClass("highlight")
       })
       $("#delete").click(function () {
         $(".highlight").hide()
