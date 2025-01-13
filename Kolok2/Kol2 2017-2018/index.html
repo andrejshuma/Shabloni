@@ -74,7 +74,7 @@
                 success:function (data) {
                     console.log(data.MRData.DriverTable.Drivers)
                     $.each(data.MRData.DriverTable.Drivers,function (index,item) {
-                        $("<li class='item' url='"+item.url+"' date='"+item.dateOfBirth+"' nationality='"+item.nationality+"' number='"+item.permanentNumber+"'>"+item.givenName+" "+ item.familyName+"</li>").appendTo("#"+$year+"")
+                        $("<li class='item' url='"+item.url+"' date='"+item.dateOfBirth+"' nationality='"+item.nationality+"' number='"+item.permanentNumber+"'>"+item.givenName+" "+ item.familyName+"<div style='display: none' class='dop'><p>"+item.dateOfBirth+"</p><p>"+item.nationality+"</p></div></li>").appendTo("#"+$year+"")
                     })
                 }
             })
@@ -97,6 +97,9 @@
             $("#nationality").html($(this).attr("nationality"))
             $("#num").html($(this).attr("number"))
             $("#link").attr("href",$(this).attr("url"))
+        })
+        $(document).on("click","#2016 li, #2017 li",function () {
+            $(this).find(".dop").slideToggle()
         })
 
     })
